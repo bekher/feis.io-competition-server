@@ -33,16 +33,16 @@ var genHash = function(password, cb) {
 };
 
 program
-  .command('add <username> <password> <firstname> <lastname> <group>')
+  .command('add <username> <password> <firstname> <lastname> <role>')
   .description('add a user')
-  .action(function(username, password, firstname, lastname, group, options) {
+  .action(function(username, password, firstname, lastname, role, options) {
     genHash(password, function(hash) {
       var user = new User({
         username: username,
         password: hash,
         firstname: firstname,
         lastname: lastname,
-        group: group
+        roles: [role]
       });
 
       user.save(function(err) {

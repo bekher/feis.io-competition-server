@@ -12,10 +12,26 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [],
-  update: [],
-  patch: [],
-  remove: []
+  create: [
+    auth.restrictToRoles({
+      roles: ['admin']
+    })
+  ],
+  update: [
+    auth.restrictToRoles({
+      roles: ['admin', 'organizer']
+    })
+  ],
+  patch: [
+    auth.restrictToRoles({
+      roles: ['admin', 'organizer']
+    })
+  ],
+  remove: [
+    auth.restrictToRoles({
+      roles: ['admin']
+    })
+  ]
 };
 
 exports.after = {

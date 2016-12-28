@@ -15,11 +15,11 @@ const userSchema = new Schema({
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
 
-  group: {
+  roles: [{
     type: String,
     required: true,
     enum: ['admin', 'judge', 'stagemgr', 'organizer']
-  },
+  }],
 
   firstname: {
     type: String,

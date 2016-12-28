@@ -4,7 +4,6 @@ const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
 
-//TODO: neuter the service to prevent create/remove except by admins
 exports.before = {
   all: [
     auth.verifyToken(),
@@ -13,10 +12,26 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [],
-  update: [],
-  patch: [],
-  remove: []
+  create: [
+    auth.restrictToRoles({
+      roles: ['admin', 'organizer']
+    })
+  ],
+  update: [
+    auth.restrictToRoles({
+      roles: ['admin', 'organizer', 'stagemgr']
+    })
+  ],
+  patch: [
+    auth.restrictToRoles({
+      roles: ['admin', 'organizer', 'stagemgr']
+    })
+  ],
+  remove: [
+   auth.restrictToRoles({
+      roles: ['admin', 'organizer']
+    })
+  ]
 };
 
 exports.after = {
