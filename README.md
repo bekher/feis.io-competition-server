@@ -40,6 +40,15 @@ $ feathers generate model                 # Generate a new Model
 $ feathers help                           # Show all commands
 ```
 
+## REST
+Authenticate through CURL with:
+```
+curl -X POST \
+-H 'Content-Type: application/json' \
+-d '{ "username": "greg", "password": "test" }' \
+http://127.0.0.1:3030/auth/local
+```
+
 ## Help
 
 For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).

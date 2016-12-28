@@ -9,11 +9,33 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: {type: String, required: true, unique: true},
+  username: { type: String, required: true, unique: true},
   password: { type: String, required: true },
   
   createdAt: { type: Date, 'default': Date.now },
-  updatedAt: { type: Date, 'default': Date.now }
+  updatedAt: { type: Date, 'default': Date.now },
+
+  group: {
+    type: String,
+    required: true,
+    enum: ['admin', 'judge', 'stagemgr', 'organizer']
+  },
+
+  firstname: {
+    type: String,
+    required: true,
+  }, 
+
+  lastname: {
+    type: String,
+    required: true,
+  },
+
+  feises: {
+    type: Schema.Types.ObjectId,
+    ref: 'feis'
+  },
+
 });
 
 const userModel = mongoose.model('user', userSchema);

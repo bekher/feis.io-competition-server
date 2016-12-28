@@ -5,8 +5,12 @@
   "public": "../public/",
   "auth": {
     "token": {
-      "secret": "i76ZxoJoqNear+R8qmOfRIPuG+5lbFuGhrDaSRI6BAZ/EJBMfriv/RVzXMiaqKDABntPHxmGXUaEH5WaAWRr0Q=="
+      "secret": "i76ZxoJoqNear+R8qmOfRIPuG+5lbFuGhrDaSRI6BAZ/EJBMfriv/RVzXMiaqKDABntPHxmGXUaEH5WaAWRr0Q==",
+      "expiresIn": "1d",
+      "issuer": "io.feis.competition.server.dev"
     },
-    "local": {}
+    "local": {
+        "usernameField": "username"
+    }
   }
 }
