@@ -1,0 +1,12 @@
+{
+  "host": "0.0.0.0",
+  "port": 3030,
+  "mongodb": "mongodb://localhost:27017/feisioCompServer",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "i76ZxoJoqNear+R8qmOfRIPuG+5lbFuGhrDaSRI6BAZ/EJBMfriv/RVzXMiaqKDABntPHxmGXUaEH5WaAWRr0Q=="
+    },
+    "local": {}
+  }
+}
