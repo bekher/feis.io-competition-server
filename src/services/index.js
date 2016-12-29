@@ -1,4 +1,5 @@
 'use strict';
+const round = require('./round');
 const feis = require('./feis');
 const competition = require('./competition');
 const authentication = require('./authentication');
@@ -14,4 +15,5 @@ module.exports = function() {
   app.configure(user);
   app.configure(competition);
   app.configure(feis);
+  app.configure(round);
 };

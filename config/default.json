@@ -6,7 +6,7 @@
   "auth": {
     "token": {
       "secret": "i76ZxoJoqNear+R8qmOfRIPuG+5lbFuGhrDaSRI6BAZ/EJBMfriv/RVzXMiaqKDABntPHxmGXUaEH5WaAWRr0Q==",
-      "expiresIn": "1d",
+      "expiresIn": "7d",
       "issuer": "io.feis.competition.server.dev"
     },
     "local": {

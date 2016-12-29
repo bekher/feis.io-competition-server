@@ -29,10 +29,6 @@ const feisSchema = new Schema({
   endDate: {
     type: Date
   },
-  read: {
-    type: Boolean,
-    default: false
-  }
 });
 
 const feisModel = mongoose.model('feis', feisSchema);
