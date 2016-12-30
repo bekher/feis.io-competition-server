@@ -1,4 +1,7 @@
 'use strict';
+const supportTicket = require('./support_ticket');
+const scoresheet = require('./scoresheet');
+const dancer = require('./dancer');
 const round = require('./round');
 const feis = require('./feis');
 const competition = require('./competition');
@@ -16,4 +19,7 @@ module.exports = function() {
   app.configure(competition);
   app.configure(feis);
   app.configure(round);
+  app.configure(dancer);
+  app.configure(scoresheet);
+  app.configure(supportTicket);
 };
