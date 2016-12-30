@@ -3,22 +3,27 @@
 // round-model.js - A mongoose model
 
 const mongoose = require('mongoose');
+const idvalidator = require('mongoose-id-validator');
 const Schema = mongoose.Schema;
 
 const roundSchema = new Schema({
-  text: { type: String, required: true },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
 
   feis: {
-    type: Schema.types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'feis',
     required: true
   },
   competition: {
-    type: Schema.types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'competition',
-    required: true
+    required: true,
+    refConditions: {
+      feis: function() {
+        return this.feis;
+      }
+    }
   },
   number: {
     type: Number,
@@ -44,18 +49,20 @@ const roundSchema = new Schema({
     default: 'notStarted'
   },
   stageManager: {
-    type: Schema.types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'user',
   },
   judges: [{
-    type: Schema.types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'user',
   }],
   dancers: [{
-    type: Schame.types.ObjetId,
+    type: Schema.Types.ObjectId,
     ref: 'dancer'
   }],
 });
+
+roundSchema.plugin(idvalidator);
 
 const roundModel = mongoose.model('round', roundSchema);
 

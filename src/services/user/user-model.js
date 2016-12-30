@@ -36,6 +36,11 @@ const userSchema = new Schema({
     ref: 'feis'
   },
 
+  competitions: {
+    type: Schema.Types.ObjectId,
+    ref: 'competition'
+  },
+
 });
 
 const userModel = mongoose.model('user', userSchema);
