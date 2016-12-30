@@ -3,15 +3,20 @@
 // competition-model.js - A mongoose model
 //
 const mongoose = require('mongoose');
+const idvalidator = require('mongoose-id-validator');
 const Schema = mongoose.Schema;
 
 const competitionSchema = new Schema({
   name: { type: String, required: true },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
+  feis: {
+    type: Schema.Types.ObjectId,
+    ref: 'feis',
+    required: true
+  },
   ageGroup: {
     type: String,
-    required: true
   },
   estStartTime: {
     type: Date
@@ -37,5 +42,7 @@ const competitionSchema = new Schema({
 });
 
 const competitionModel = mongoose.model('competition', competitionSchema);
+
+competitionSchema.plugin(idvalidator)
 
 module.exports = competitionModel;
