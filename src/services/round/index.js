@@ -10,7 +10,7 @@ module.exports = function() {
   const options = {
     Model: round,
     paginate: {
-      default: 5,
+      default: 15,
       max: 25
     }
   };

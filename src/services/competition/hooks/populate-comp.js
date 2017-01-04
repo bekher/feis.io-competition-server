@@ -13,8 +13,20 @@ const defaults = {};
 module.exports = function(options) {
   options = Object.assign({}, defaults, options);
 
-  return function(hook) {
+  return function(hook, next) {
     hook.populateComp = true;
+    const Rounds = hook.app.service('rounds');
+    Rounds.find(['competitionId', hook.result._id], function(err, stuff) {
+      if (!err ) {
+        hook.result.rounds = !!stuff ? stuff.data : []
+        console.log(hook.result)
+      } else {
+        throw new Error("Error in comp hook");
+        console.log(err)
+      }
+      next()
+    });
+
     // can assume hook.params.user is available
       /*
     const feisId = hook.data.feis;

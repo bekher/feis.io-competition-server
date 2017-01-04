@@ -10,8 +10,8 @@ module.exports = function() {
   const options = {
     Model: dancer,
     paginate: {
-      default: 5,
-      max: 25
+      default: 75,
+      max: 100
     }
   };
 

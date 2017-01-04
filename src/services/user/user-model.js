@@ -6,6 +6,7 @@
 // for more of what you can do here.
 
 const mongoose = require('mongoose');
+const idvalidator = require('mongoose-id-validator');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -31,17 +32,25 @@ const userSchema = new Schema({
     required: true,
   },
 
-  feises: {
+  //TODO check make sure currentFeis is in feises
+  currentFeis: {
     type: Schema.Types.ObjectId,
     ref: 'feis'
   },
 
-  competitions: {
+  feises: [{
+    type: Schema.Types.ObjectId,
+    ref: 'feis'
+  }],
+
+  competitions: [{
     type: Schema.Types.ObjectId,
     ref: 'competition'
-  },
+  }],
 
 });
+
+userSchema.plugin(idvalidator);
 
 const userModel = mongoose.model('user', userSchema);
 

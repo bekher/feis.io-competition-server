@@ -10,6 +10,10 @@ const Schema = mongoose.Schema;
 const dancerSchema = new Schema({
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
+  competitionId: {
+    type: Schema.Types.ObjectId,
+    ref: 'competition'
+  }.
   number: {
     type: Number,
     required: true
@@ -24,14 +28,14 @@ const dancerSchema = new Schema({
   },
   gender: {
     type: String,
-    required: true,
+   required: true,
     enum: ['male', 'female', 'other']
   },
-  externalID: { //feis.io registration id, must validate
+  externalID: { //feis.io registration id, must validate, must scrub when sending out 
     type: String
   },
   danceInfo: [{
-    round: {
+    roundId: {
       type: Schema.Types.ObjectId,
       ref: 'round'
     }, 
@@ -55,18 +59,11 @@ const dancerSchema = new Schema({
       default: false
     }
   }],
-  /*
-  rounds: [{
+  scoresheetIds: [{
     type: Schema.Types.ObjectId,
-    ref: 'round'
+    ref: 'scoresheet'
   }],
-  competitions: [{
-    type: Schema.Types.ObjectId,
-    ref: 'round'
-  }],
-  /scoresheets: [{
-  }],
-  */
+  
 
 });
 

@@ -10,12 +10,12 @@ const roundSchema = new Schema({
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
 
-  feis: {
+  feisId: {
     type: Schema.Types.ObjectId,
     ref: 'feis',
     required: true
   },
-  competition: {
+  competitionId: {
     type: Schema.Types.ObjectId,
     ref: 'competition',
     required: true,
@@ -48,15 +48,15 @@ const roundSchema = new Schema({
     required: true,
     default: 'notStarted'
   },
-  stageManager: {
+  stageManagerIds: {
     type: Schema.Types.ObjectId,
     ref: 'user',
   },
-  judges: [{
+  judgeIds: [{
     type: Schema.Types.ObjectId,
     ref: 'user',
   }],
-  dancers: [{
+  dancerIds: [{
     type: Schema.Types.ObjectId,
     ref: 'dancer'
   }],
