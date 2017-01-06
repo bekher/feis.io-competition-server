@@ -18,6 +18,11 @@ const scoresheetSchema = new Schema({
     ref: 'feis',
     required: true
   },
+  round: {
+    type: Schema.Types.ObjectId,
+    ref: 'round',
+    required: true
+  },
   dancer: {
     type: Schema.Types.ObjectId,
     ref: 'dancer',
@@ -34,6 +39,21 @@ const scoresheetSchema = new Schema({
     enum: ['not_accessed', 'in_progress', 'complete', 'finalized'],
     default: 'in_progress'
   },
+  scores: [{
+    name: {
+      type: String,
+    },
+    value: {
+      type: Number
+    }
+  }],
+  comments: {
+    type: String,
+    trim: true
+    //maxlength: 500,
+  }
+  // if we have a dancer handle we don't need these
+  /*
   set: {
     name: {
       type: String,
@@ -51,6 +71,7 @@ const scoresheetSchema = new Schema({
     enum: ['hard','soft','other'],
     required: true,
   }
+  */
 
 });
 

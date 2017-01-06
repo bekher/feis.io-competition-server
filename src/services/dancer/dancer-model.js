@@ -2,6 +2,7 @@
 
 // dancer-model.js - A mongoose model
 // TODO: validate name lengths
+// TODO: validate number not already exists for feis id
 
 const mongoose = require('mongoose');
 const idvalidator = require('mongoose-id-validator');
@@ -10,10 +11,10 @@ const Schema = mongoose.Schema;
 const dancerSchema = new Schema({
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
-  competitionId: {
+  competitionIds: [{
     type: Schema.Types.ObjectId,
     ref: 'competition'
-  }.
+  }],
   number: {
     type: Number,
     required: true
@@ -31,7 +32,7 @@ const dancerSchema = new Schema({
    required: true,
     enum: ['male', 'female', 'other']
   },
-  externalID: { //feis.io registration id, must validate, must scrub when sending out 
+  externalId: { //feis.io registration id, must validate, must scrub when sending out 
     type: String
   },
   danceInfo: [{
@@ -39,13 +40,11 @@ const dancerSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'round'
     }, 
-    set: {
-      name: {
-        type: String,
-      },
-      speed: { // BPM
-        type: Number,
-      },
+    setName: {
+      type: String,
+    }, 
+    setSpeed: {
+      type: Number, //BPM
     },
     danceType: {
       type: String,

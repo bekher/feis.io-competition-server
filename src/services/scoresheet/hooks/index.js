@@ -8,13 +8,20 @@ exports.before = {
   all: [
     auth.verifyToken(),
     auth.populateUser(),
-    auth.restrictToAuthenticated()
+    auth.restrictToAuthenticated(),
+    auth.restrictToRoles({
+      roles: ['admin', 'judge', 'organizer']
+    }),
   ],
   find: [],
   get: [],
   create: [],
-  update: [],
-  patch: [],
+  update: [
+    hooks.setUpdatedAt('updatedAt')
+  ],
+  patch: [
+    hooks.setUpdatedAt('updatedAt')
+  ],
   remove: []
 };
 
