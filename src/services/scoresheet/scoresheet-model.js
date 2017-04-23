@@ -18,17 +18,17 @@ const scoresheetSchema = new Schema({
     ref: 'feis',
     required: true
   },
-  round: {
+  roundId: {
     type: Schema.Types.ObjectId,
     ref: 'round',
     required: true
   },
-  dancer: {
+  dancerId: {
     type: Schema.Types.ObjectId,
     ref: 'dancer',
     required: true
   },
-  judge: {
+  judgeId: {
     type: Schema.Types.ObjectId,
     ref: 'user',
     required: true,
@@ -76,6 +76,8 @@ const scoresheetSchema = new Schema({
 });
 
 scoresheetSchema.plugin(idvalidator);
+scoresheetSchema.index({feisId: 1, roundId: 1, dancerId: 1, judgeId: 1})
+
 const scoresheetModel = mongoose.model('scoresheet', scoresheetSchema);
 
 module.exports = scoresheetModel;

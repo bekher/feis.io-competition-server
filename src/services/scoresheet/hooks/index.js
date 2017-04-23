@@ -12,17 +12,31 @@ exports.before = {
     auth.restrictToRoles({
       roles: ['admin', 'judge', 'organizer']
     }),
+    hooks.iff(globalHooks.isJudge(), auth.restrictToOwner({ownerField: 'judgeId'})),
   ],
-  find: [],
-  get: [],
-  create: [],
+  find: [
+    auth.queryWithCurrentUser({as: 'judgeId'}),
+  ],
+  get: [
+    auth.queryWithCurrentUser({as: 'judgeId'})
+  ],
+  create: [
+    auth.associateCurrentUser({as: 'judgeId'}),
+    hooks.iff(globalHooks.isJudge(), hooks.remove('judgeId'))
+  ],
   update: [
-    hooks.setUpdatedAt('updatedAt')
+    hooks.setUpdatedAt('updatedAt'),
+    auth.associateCurrentUser({as: 'judgeId'}),
+    hooks.iff(globalHooks.isJudge(), hooks.remove('judgeId'))
   ],
   patch: [
-    hooks.setUpdatedAt('updatedAt')
+    hooks.setUpdatedAt('updatedAt'),
+    auth.associateCurrentUser({as: 'judgeId'}),
+    hooks.iff(globalHooks.isJudge(), hooks.remove('judgeId'))
   ],
-  remove: []
+  remove: [
+    auth.restrictToRoles({roles:['admin','organizer']})
+  ]
 };
 
 exports.after = {

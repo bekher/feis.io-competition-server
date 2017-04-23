@@ -3,18 +3,15 @@
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks-common');
 const auth = require('feathers-authentication').hooks;
-const service = require('feathers-mongoose');
-
-const isNotAdmin = adminRole => hook => hook.params.user.roles.indexOf(adminRole || 'admin' || 'organizer') === -1;
-const isJudge = judgeRole => hook => hook.params.user.roles.indexOf(judgeRole || 'judge') === -1;
+const mongoose = require('feathers-mongoose');
 
 exports.before = {
   all: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    hooks.iff(isNotAdmin(), hooks.remove('externalId')),
-    hooks.iff(isJudge(), hooks.remove(['firstName', 'lastName'])),
+    hooks.iff(globalHooks.isNotAdmin(), hooks.remove('externalId')),
+    hooks.iff(globalHooks.isJudge(), hooks.remove(['firstName', 'lastName'])),
   ],
   find: [],
   get: [],
@@ -44,9 +41,9 @@ exports.before = {
 
 exports.after = {
   all: [
-    service.hooks.toObject({}),
-    hooks.iff(isNotAdmin(), hooks.remove('externalId')),
-    hooks.iff(isJudge(), hooks.remove(['firstName', 'lastName'])),
+    mongoose.hooks.toObject({}),
+    hooks.iff(globalHooks.isNotAdmin(), hooks.remove('externalId')),
+    hooks.iff(globalHooks.isJudge(), hooks.remove(['firstName', 'lastName'])),
   ],
   find: [],
   get: [],

@@ -1,7 +1,5 @@
 'use strict';
 const supportTicket = require('./supportTicket');
-const supportTicket = require('./supportTicket');
-const supportTicket = require('./support_ticket');
 const scoresheet = require('./scoresheet');
 const dancer = require('./dancer');
 const round = require('./round');

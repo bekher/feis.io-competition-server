@@ -11,3 +11,6 @@ exports.myHook = function(options) {
     console.log('My custom global hook ran. Feathers is awesome!');
   };
 };
+
+exports.isNotAdmin = adminRole => hook => hook.params.user.roles.indexOf(adminRole || 'admin' || 'organizer') === -1
+exports.isJudge = judgeRole => hook => hook.params.user.roles.indexOf(judgeRole || 'judge') === -1;

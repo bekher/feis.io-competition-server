@@ -11,6 +11,13 @@ const Schema = mongoose.Schema;
 const dancerSchema = new Schema({
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
+  /* TODO: add this in 
+  feis: {
+    type: Schema.Types.ObjectId,
+    ref: 'feis',
+    required: true
+  },
+  */
   competitionIds: [{
     type: Schema.Types.ObjectId,
     ref: 'competition'
@@ -58,11 +65,12 @@ const dancerSchema = new Schema({
       default: false
     }
   }],
+  /* not needed
   scoresheetIds: [{
     type: Schema.Types.ObjectId,
     ref: 'scoresheet'
   }],
-  
+  */
 
 });
 

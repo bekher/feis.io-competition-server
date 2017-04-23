@@ -32,10 +32,10 @@ const userSchema = new Schema({
     required: true,
   },
 
-  //TODO check make sure currentFeis is in feises
   currentFeis: {
     type: Schema.Types.ObjectId,
-    ref: 'feis'
+    ref: 'feis',
+    required: true,
   },
 
   feises: [{

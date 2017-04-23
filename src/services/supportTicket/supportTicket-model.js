@@ -33,6 +33,6 @@ const supportTicketSchema = new Schema({
 
 const supportTicketModel = mongoose.model('supportTicket', supportTicketSchema);
 
-competitionSchema.plugin(idvalidator)
+supportTicketSchema.plugin(idvalidator)
 
 module.exports = supportTicketModel;

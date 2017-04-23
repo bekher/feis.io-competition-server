@@ -1,6 +1,7 @@
 const program = require('commander');
 const mongoose = require('mongoose');
 const User = require('../src/services/user/user-model.js');
+const Feis = require('../src/services/feis/feis-model.js');
 const crypto = require('bcryptjs');
 
 var config;
@@ -33,16 +34,18 @@ var genHash = function(password, cb) {
 };
 
 program
-  .command('add <username> <password> <firstname> <lastname> <role>')
+  .command('add <username> <password> <firstname> <lastname> <role> <currentFeis>')
   .description('add a user')
-  .action(function(username, password, firstname, lastname, role, options) {
+  .action(function(username, password, firstname, lastname, role, currentFeis, options) {
     genHash(password, function(hash) {
       var user = new User({
         username: username,
         password: hash,
         firstname: firstname,
         lastname: lastname,
-        roles: [role]
+        roles: [role],
+        currentFeis: currentFeis,
+        feises: [currentFeis]
       });
 
       user.save(function(err) {

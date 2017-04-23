@@ -3,6 +3,7 @@
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks-common');
 const auth = require('feathers-authentication').hooks;
+const mongoose = require('feathers-mongoose');
 
 exports.before = {
   all: [],
@@ -66,6 +67,7 @@ const schema= {
 }
 exports.after = {
   all: [
+    mongoose.hooks.toObject({}),
     hooks.remove('password'),
     hooks.populate({schema: schema})
   ],
